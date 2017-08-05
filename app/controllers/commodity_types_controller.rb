@@ -28,7 +28,7 @@ class CommodityTypesController < ApplicationController
 
     respond_to do |format|
       if @commodity_type.save
-        format.html { redirect_to commodity_types_url, notice: 'Commodity type was successfully created.' }
+        format.html { redirect_to commodity_types_url, flash: {success: '操作成功.' } }
         format.json { render :show, status: :created, location: @commodity_type }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CommodityTypesController < ApplicationController
   def update
     respond_to do |format|
       if @commodity_type.update(commodity_type_params)
-        format.html { redirect_to commodity_types_url, notice: 'Commodity type was successfully updated.' }
+        format.html { redirect_to commodity_types_url, flash: {success: '操作成功.' }}
         format.json { render :show, status: :ok, location: @commodity_type }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CommodityTypesController < ApplicationController
   def destroy
     @commodity_type.destroy
     respond_to do |format|
-      format.html { redirect_to commodity_types_url, notice: 'Commodity type was successfully destroyed.' }
+      format.html { redirect_to commodity_types_url, flash: {success: '操作成功.' } }
       format.json { head :no_content }
     end
   end

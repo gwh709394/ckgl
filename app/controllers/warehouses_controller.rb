@@ -28,7 +28,7 @@ class WarehousesController < ApplicationController
 
     respond_to do |format|
       if @warehouse.save
-        format.html { redirect_to warehouses_url, notice: '操作成功.' }
+        format.html { redirect_to warehouses_url, flash: {success: '操作成功.' } }
         format.json { render :show, status: :created, location: @warehouse }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class WarehousesController < ApplicationController
   def update
     respond_to do |format|
       if @warehouse.update(warehouse_params)
-        format.html { redirect_to warehouses_url, notice: '操作成功.' }
+        format.html { redirect_to warehouses_url, flash: {success: '操作成功.' } }
         format.json { render :show, status: :ok, location: @warehouse }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class WarehousesController < ApplicationController
   def destroy
     @warehouse.destroy
     respond_to do |format|
-      format.html { redirect_to warehouses_url, notice: 'Warehouse was successfully destroyed.' }
+      format.html { redirect_to warehouses_url, flash: {success: '操作成功.' } }
       format.json { head :no_content }
     end
   end
