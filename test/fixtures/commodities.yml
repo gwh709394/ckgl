@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  code: MyString
+  commodity_type_id: 1
+  bar_code: MyString
+  specification: MyString
+  unit: MyString
+
+two:
+  name: MyString
+  code: MyString
+  commodity_type_id: 1
+  bar_code: MyString
+  specification: MyString
+  unit: MyString

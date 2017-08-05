@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :commodities
   resources :commodity_types
   resources :warehouses
   devise_for :users
