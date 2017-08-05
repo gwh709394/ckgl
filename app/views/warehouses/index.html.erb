@@ -1,0 +1,32 @@
+
+<h4>仓库信息管理</h4>
+<%= link_to '新建', new_warehouse_path, class:'btn btn-primary' %>
+<hr />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>代码</th>
+      <th>地点</th>
+      <th>备注</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @warehouses.each do |warehouse| %>
+      <tr>
+        <td><%= warehouse.name %></td>
+        <td><%= warehouse.code %></td>
+        <td><%= warehouse.location %></td>
+        <td><%= warehouse.remark %></td>
+        <td>
+        <%= link_to '编辑', edit_warehouse_path(warehouse) %>
+        <%= link_to '删除', warehouse, method: :delete, data: { confirm: '确定删除吗?' }, class:'btn btn-sm btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
