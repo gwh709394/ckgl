@@ -21,7 +21,7 @@
         <td><%= warehouse.code %></td>
         <td><%= warehouse.location %></td>
         <td><%= warehouse.remark %></td>
-        <td><%= link_to 'Show', warehouse %>
+        <td>
         <%= link_to 'Edit', edit_warehouse_path(warehouse) %>
         <%= link_to 'Destroy', warehouse, method: :delete, data: { confirm: '确定删除吗?' }, class:'btn btn-sm btn-danger' %></td>
       </tr>
