@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<h4>商品分类</h4>
+
+<%= link_to '新建', new_commodity_type_path, class:'btn btn-primary' %>
+<hr />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>类型名称</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @commodity_types.each do |commodity_type| %>
+      <tr>
+        <td><%= commodity_type.name %></td>
+        <td><%= link_to '编辑', edit_commodity_type_path(commodity_type) %>
+        <%= link_to '删除', commodity_type, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-sm btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
