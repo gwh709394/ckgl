@@ -20,7 +20,7 @@
             <li><%= link_to '商品信息', commodities_path %></li>
             <li role="separator" class="divider"></li>
             <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
+            <li><%= link_to '用户信息', users_path %></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
@@ -35,8 +35,7 @@
             <li><%= link_to '注销', destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
-        <% else %>
-        <li><%= link_to '登录', new_user_session_path %></li>
+        
         <% end %>
       </ul>
     </div><!--/.nav-collapse -->
