@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stock_types
   root to: 'home#welcome'
   
   resources :commodities

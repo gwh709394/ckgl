@@ -1,0 +1,23 @@
+
+<h4>出入库类型</h4>
+<%= link_to '新建', new_stock_type_path, class:'btn btn-primary' %>
+<hr />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>类型</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_types.each do |stock_type| %>
+      <tr>
+        <td><%= stock_type.name %></td>
+        <td><%= StockingType.display(stock_type.s_type) %></td>
+        <td><%= link_to 'Edit', edit_stock_type_path(stock_type) %>
+        <%= link_to 'Destroy', stock_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
