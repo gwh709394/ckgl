@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  commodity_id: 1
+  stock_type_id: 1
+  warehouse_id: 1
+  price: 9.99
+  quantity: 1
+  sum: 9.99
+  summary: MyText
+  s_date: 2017-08-11 11:58:27
+
+two:
+  code: MyString
+  commodity_id: 1
+  stock_type_id: 1
+  warehouse_id: 1
+  price: 9.99
+  quantity: 1
+  sum: 9.99
+  summary: MyText
+  s_date: 2017-08-11 11:58:27

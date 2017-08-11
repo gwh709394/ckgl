@@ -19,14 +19,16 @@
             <li><%= link_to '商品类型', commodity_types_path %></li>
             <li><%= link_to '商品信息', commodities_path %></li>
             <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
+            <li><%= link_to '职员信息', staffs_path %></li>
             <li><%= link_to '用户信息', users_path %></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="f">库存管理 <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><%= link_to '出库明细', stocks_path(opt: 2) %></li>
+            <li><%= link_to '入库明细', stocks_path %></li>
+            <li><%= link_to '商品库存明细', commodities_path %></li>
             <li><%= link_to '出入库类型', stock_types_path %></li>
           </ul>
         </li>

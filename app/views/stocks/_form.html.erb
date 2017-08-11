@@ -1,0 +1,21 @@
+<%= simple_form_for(@stock) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-group">
+    <%= f.input :code, input_html: { class: 'form-control'}, label: '单据编号' %>
+    <%= f.input :commodity_id, input_html: { class: 'form-control'}, label: '商品名称' %>
+    <%= f.association :stock_type, input_html: { class: 'form-control'}, label: '类型' %>
+    <%= f.association :warehouse, input_html: { class: 'form-control'}, label: '仓库名称' %>
+    <%= f.input :price, input_html: { class: 'form-control'}, label: '单价' %>
+    <%= f.input :quantity, input_html: { class: 'form-control'}, label: '数量' %>
+    <%= f.input :sum, input_html: { class: 'form-control'}, label: '金额' %>
+    <%= f.input :summary, input_html: { class: 'form-control'}, label: '摘要' %>
+    <%= f.input :s_date, input_html: { class: 'form-control'}, label: '业务日期' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit '保存', class: 'btn btn-primary' %>
+    <%= link_to '返回', stocks_path %>
+  </div>
+<% end %>
+
