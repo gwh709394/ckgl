@@ -1,0 +1,41 @@
+<% if params[:opt] == StockingType::RECEVING  || params[:opt].nil? %>
+<h4>入库明细</h4>
+<%= link_to '新建入库信息', new_document_path(opt: StockingType::RECEVING), class:'btn btn-primary' %>
+<% else %>
+<h4>出库明细</h4>
+<%= link_to '新建出库信息', new_document_path(opt: StockingType::SHIPPING), class:'btn btn-primary' %>
+<% end %>
+<hr />
+<hr />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>单据编号</th>
+      <th>单据类型</th>
+      <th>仓库</th>
+      <th>日期</th>
+      <th>经手人</th>
+      <th>商品名称</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.number %></td>
+        <td><%= document.stock_type_id %></td>
+        <td><%= document.warehouse_id %></td>
+        <td><%= document.d_date %></td>
+        <td><%= document.staff_id %></td>
+        <td><%= document.summary %></td>
+        <td><%= link_to 'Edit', edit_document_path(document) %>
+        <%= link_to 'Destroy', document, method: :delete, data: { confirm: '确定删除嘛?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Document', new_document_path %>

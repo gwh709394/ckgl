@@ -1,4 +1,4 @@
 class Warehouse < ApplicationRecord
 	validates :name, presence: true
-  has_many :stocks
+  has_many :documents
 end

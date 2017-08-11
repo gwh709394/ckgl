@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :documents
   resources :staffs
   resources :stocks
   resources :stock_types
