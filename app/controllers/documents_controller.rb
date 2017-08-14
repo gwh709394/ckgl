@@ -10,15 +10,18 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    
   end
 
   # GET /documents/new
   def new
     @document = Document.new
+    @commodities = Commodity.all.page(params[:page]).per(2)
   end
 
   # GET /documents/1/edit
   def edit
+    @commodities = Commodity.all.page(params[:page]).per(2)
   end
 
   # POST /documents
@@ -28,6 +31,16 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        params.each do |key,value|
+          Rails.logger.info "Param #{key}: #{value}"
+          if key.include? 'quantity'
+            Rails.logger.info "Param stock #{@document.warehouse_id}, "
+            c  = Commodity.find(key.split('_')[0].to_i)
+            Rails.logger.info "Param stock #{c.name}, "
+            s = @document.stocks.create(commodity_id: c.id, quantity: value.to_i)
+            
+          end
+        end
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else

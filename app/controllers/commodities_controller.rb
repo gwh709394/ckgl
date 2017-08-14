@@ -5,6 +5,16 @@ class CommoditiesController < ApplicationController
   # GET /commodities.json
   def index
     @commodities = Commodity.all
+    if params[:q].present?
+      @commodities = @commodities.query(params[:q].to_s)
+    end
+    respond_to do |format|
+      format.html
+      format.js {} 
+      format.json { 
+         render json: {:commodities => @commodities}
+      } 
+    end
   end
 
   # GET /commodities/1

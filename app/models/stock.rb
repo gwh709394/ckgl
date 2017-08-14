@@ -1,4 +1,4 @@
 class Stock < ApplicationRecord
-  belongs_to :warehouse
-  belongs_to :stock_type
+  belongs_to :document
+  belongs_to :commodity
 end
