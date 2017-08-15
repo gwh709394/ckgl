@@ -1,0 +1,39 @@
+<h4>职员信息</h4>
+
+<%= link_to '新建', new_staff_path, class:'btn btn-primary' %>
+<hr />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>工号</th>
+      <th>性别</th>
+      <th>联系电话</th>
+      <th>联系地址</th>
+      <th>状态</th>
+      <th ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= staff.name %></td>
+        <td><%= staff.number %></td>
+        <td>
+          <% if staff.gender == 1 %>男
+          <% else %>女
+          <% end %>
+        </td>
+        <td><%= staff.telephone %></td>
+        <td><%= staff.address %></td>
+        <td><% if staff.status == 1 %>在职
+          <% else %>离职
+          <% end %>
+        <td>
+        <%= link_to 'Edit', edit_staff_path(staff) %>
+        <%= link_to 'Destroy', staff, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default" style="margin-top:50px">
+      <div class="panel-heading">
+        <% if params[:opt].to_i == StockingType::RECEVING  || params[:opt].nil? %>
+        <h3 class="panel-title">入库信息</h3> 
+        <% else %>
+        <h3 class="panel-title">出库信息</h3> 
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <%= render 'form', document: @document %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="javascript">
+  
+    $("#bar-code-input").change(function() {
+      query = $("#bar-code-input").val()
+      $.ajax({
+        type: "GET",
+        url: "/commodities",
+        data: { q: query },
+        dataType: "json",
+        success:function(data) {
+          data.commodities.forEach(function(c){
+            $commodity = $("<tr><input type='hidden' name='c_ids' value='" + c.id+"' /><td>" + c.name + "</td><td>" + c.code +"<  /td><td></td><td></td><td></td><td></td><td></td><td><input type='text' name='"+c.id+"_quantity' class='form-  control'/></td></tr>");
+            $('#stock_data').append($commodity);
+          });
+        }
+      });
+    });
+</script>

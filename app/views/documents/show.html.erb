@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default" style="margin-top:20px">
+      <div class="panel-heading">
+        
+      </div>
+      <div class="panel-body">
+        <strong>Number:</strong>
+        <%= @document.number %><br/>
+        <strong>Stock type:</strong>
+        <%= @document.stock_type_id %><br/>
+        <strong>Warehouse:</strong>
+          <%= @document.warehouse_id %><br/>
+        <strong>D date:</strong>
+          <%= @document.d_date %><br/>
+        <strong>Staff:</strong>
+          <%= @document.staff_id %><br/>
+        <strong>Summary:</strong>
+          <%= @document.summary %>
+      </div>
+    </div>
+     <table class="table table-striped" id="tblGrid">
+         <thead id="tblHead">
+           <tr>
+             <th>名称</th>
+             <th>编码</th>
+             <th>类型</th>
+             <th>条码</th>
+             <th>规格型号</th>
+             <th>计量单位</th>
+             <th>数量</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @document.stocks.each do |s| %>
+           <tr>
+              
+             <td><%= s.commodity.name %></td>
+             <td><%= s.commodity.code %></td>
+             <td><%= s.commodity.commodity_type_id %></td>
+             <td><%= s.commodity.bar_code %></td>
+             <td><%= s.commodity.specification %></td>
+             <td><%= s.commodity.unit %></td>
+             <td><%= s.quantity %></td>
+           </tr>
+           <% end %>
+         </tbody>
+       </table>
+  </div>
+</div>
+
+

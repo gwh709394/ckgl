@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default" style="margin-top:50px">
+      <div class="panel-heading">
+        <% if params[:opt].to_i == StockingType::RECEVING  || params[:opt].nil? %>
+        <h3 class="panel-title">入库信息</h3> 
+        <% else %>
+        <h3 class="panel-title">出库信息</h3> 
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <%= render 'form', document: @document %>
+      </div>
+    </div>
+  </div>
+</div>
+

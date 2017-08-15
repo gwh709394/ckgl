@@ -1,0 +1,40 @@
+<h4>商品出入库明细</h4>
+<%= form_tag(stocks_path, :method => "get", id: "search-form",class: "form-inline") do %>
+  <div class="form-group">
+  <%= text_field_tag :search, params[:search], placeholder: "搜索关键字", class: 'form-control' %>
+  <%= submit_tag "查询", class:'btn btn-warning' %></div>
+<% end %>
+<hr />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>仓库</th>
+      <th>单据编号</th>
+      <th>业务日期</th>
+      <th>单据类型</th>
+      <th>商品编码</th>
+      <th>商品名称</th>
+      <th>规格型号</th>
+      <th>单位</th>
+      <th>库存变动</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= Warehouse.find(stock.warehouse_id).name if stock.warehouse_id.present? %></td>
+        <td><%= stock.document.number %></td>
+        <td><%= stock.document.d_date.strftime("%Y-%m-%d") %></td>
+        <td><%= StockType.find(stock.document.stock_type_id).name if stock.document.stock_type_id.present? %></td>
+        <td><%= Commodity.find(stock.commodity_id).code %></td>
+        <td><%= Commodity.find(stock.commodity_id).name %></td>
+        <td><%= Commodity.find(stock.commodity_id).specification %></td>
+        <td><%= Commodity.find(stock.commodity_id).unit %></td>
+        <td><%= stock.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate(@stocks) %>
+

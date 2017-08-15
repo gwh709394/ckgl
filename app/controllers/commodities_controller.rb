@@ -5,6 +5,16 @@ class CommoditiesController < ApplicationController
   # GET /commodities.json
   def index
     @commodities = Commodity.all
+    if params[:q].present?
+      @commodities = @commodities.query(params[:q].to_s)
+    end
+    respond_to do |format|
+      format.html
+      format.js {} 
+      format.json { 
+         render json: {:commodities => @commodities}
+      } 
+    end
   end
 
   # GET /commodities/1
@@ -69,6 +79,6 @@ class CommoditiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def commodity_params
-      params.require(:commodity).permit(:name, :code, :commodity_type_id, :bar_code, :specification, :unit)
+      params.require(:commodity).permit(:name, :code, :commodity_type_id, :bar_code, :specification, :unit, :cost, :sale)
     end
 end

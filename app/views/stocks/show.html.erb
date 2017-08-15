@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @stock.code %>
+</p>
+
+<p>
+  <strong>Commodity:</strong>
+  <%= @stock.commodity_id %>
+</p>
+
+<p>
+  <strong>Stock type:</strong>
+  <%= @stock.stock_type_id %>
+</p>
+
+<p>
+  <strong>Warehouse:</strong>
+  <%= @stock.warehouse_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @stock.price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @stock.quantity %>
+</p>
+
+<p>
+  <strong>Sum:</strong>
+  <%= @stock.sum %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @stock.summary %>
+</p>
+
+<p>
+  <strong>S date:</strong>
+  <%= @stock.s_date %>
+</p>
+
+<%= link_to 'Edit', edit_stock_path(@stock) %> |
+<%= link_to 'Back', stocks_path %>
