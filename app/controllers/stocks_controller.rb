@@ -4,7 +4,11 @@ class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
   def index
-    @stocks = Stock.all
+    @stocks = Stock.where('document_id is not null')
+    if params[:search].present?
+      @stocks = @stocks.query(params[:search].to_s)
+    end
+    @stocks = @stocks.page(params[:page])
   end
 
   # GET /stocks/1

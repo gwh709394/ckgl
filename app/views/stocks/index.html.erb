@@ -1,42 +1,40 @@
-<% if params[:opt] == StockingType::RECEVING  || params[:opt].nil? %>
-<h4>入库明细</h4>
-<%= link_to '新建入库信息', new_stock_path(opt: StockingType::RECEVING), class:'btn btn-primary' %>
-<% else %>
-<h4>出库明细</h4>
-<%= link_to '新建出库信息', new_stock_path(opt: StockingType::SHIPPING), class:'btn btn-primary' %>
+<h4>商品出入库明细</h4>
+<%= form_tag(stocks_path, :method => "get", id: "search-form",class: "form-inline") do %>
+  <div class="form-group">
+  <%= text_field_tag :search, params[:search], placeholder: "搜索关键字", class: 'form-control' %>
+  <%= submit_tag "查询", class:'btn btn-warning' %></div>
 <% end %>
 <hr />
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>编号</th>
-      <th>商品名称</th>
-      <th>出入库类型</th>
       <th>仓库</th>
-      <th>单价</th>
-      <th>数量</th>
-      <th>金额</th>
-      <th>日期</th>
-      <th></th>
+      <th>单据编号</th>
+      <th>业务日期</th>
+      <th>单据类型</th>
+      <th>商品编码</th>
+      <th>商品名称</th>
+      <th>规格型号</th>
+      <th>单位</th>
+      <th>库存变动</th>
     </tr>
   </thead>
 
   <tbody>
     <% @stocks.each do |stock| %>
       <tr>
-        <td><%= stock.code %></td>
-        <td><%= stock.commodity_id %></td>
-        <td><%= stock.stock_type_id %></td>
-        <td><%= stock.warehouse_id %></td>
-        <td><%= stock.price %></td>
+        <td><%= Warehouse.find(stock.warehouse_id).name if stock.warehouse_id.present? %></td>
+        <td><%= stock.document.number %></td>
+        <td><%= stock.document.d_date.strftime("%Y-%m-%d") %></td>
+        <td><%= StockType.find(stock.document.stock_type_id).name if stock.document.stock_type_id.present? %></td>
+        <td><%= Commodity.find(stock.commodity_id).code %></td>
+        <td><%= Commodity.find(stock.commodity_id).name %></td>
+        <td><%= Commodity.find(stock.commodity_id).specification %></td>
+        <td><%= Commodity.find(stock.commodity_id).unit %></td>
         <td><%= stock.quantity %></td>
-        <td><%= stock.sum %></td>
-        <td><%= stock.summary %></td>
-        <td><%= stock.s_date %></td>
-        <td><%= link_to 'Edit', edit_stock_path(stock) %>
-        <%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate(@stocks) %>
 
