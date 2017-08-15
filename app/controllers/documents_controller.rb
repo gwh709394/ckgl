@@ -5,6 +5,13 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
+    if params[:opt].to_i == StockingType::RECEVING  || params[:opt].nil? 
+      a = StockType.where(s_type: StockingType::RECEVING).map{|x| x.id}
+    else
+      a = StockType.where(s_type: StockingType::SHIPPING).map{|x| x.id}  
+    end
+    @documents = @documents.where('stock_type_id in (?)', a)
+    @documents = @documents.page(params[:page])
   end
 
   # GET /documents/1
