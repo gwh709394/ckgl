@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814023643) do
+ActiveRecord::Schema.define(version: 20170815145822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20170814023643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_commodity_types_on_name", using: :btree
+  end
+
+  create_table "commodity_warehouse_relationships", force: :cascade do |t|
+    t.integer  "commodity_id"
+    t.integer  "warehouse_id"
+    t.integer  "stock_quantity"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["commodity_id"], name: "index_commodity_warehouse_relationships_on_commodity_id", using: :btree
+    t.index ["warehouse_id"], name: "index_commodity_warehouse_relationships_on_warehouse_id", using: :btree
   end
 
   create_table "documents", force: :cascade do |t|

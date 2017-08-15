@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :commodity_warehouse_relationships
   resources :documents
   resources :staffs
   resources :stocks
