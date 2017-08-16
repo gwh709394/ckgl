@@ -49,7 +49,7 @@ class DocumentsController < ApplicationController
           if key.include? 'quantity'
             c  = Commodity.find(key.split('_')[0].to_i)
             quan = value.to_i.abs
-            if @document.stock_type_id == StockingType::SHIPPING
+            if StockType.find(@document.stock_type_id).s_type == StockingType::SHIPPING
               quan = -quan
             end
             s = @document.stocks.create(commodity_id: c.id, quantity: quan, warehouse_id: @document.warehouse_id)
