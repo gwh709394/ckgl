@@ -24,6 +24,13 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.new
     @commodities = Commodity.all.page(params[:page]).per(2)
+    if params[:opt].to_i == StockingType::RECEVING  || params[:opt].nil? 
+      @document.number = Document.set_number(StockingType::RECEVING)
+    else
+      a = StockType.where(s_type: StockingType::SHIPPING).map{|x| x.id}  
+      @document.number = Document.set_number(StockingType::SHIPPING)
+    end
+    
   end
 
   # GET /documents/1/edit
