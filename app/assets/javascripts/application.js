@@ -23,11 +23,11 @@ $(document).ready (function(){
     $.ajax({
       type: "GET",
       url: "/commodities",
-      data: { q: query },
+      data: { search: query },
       dataType: "json",
       success:function(data) {
         data.commodities.forEach(function(c){
-          $commodity = $("<tr><input type='hidden' name='c_ids' value='" + c.id+"' /><td>" + c.name + "</td><td>" + c.code +"</td><td></td><td></td><td></td><td></td><td></td><td><input type='text' name='"+c.id+"_quantity' class='form-control'/></td></tr>");
+          $commodity = $("<tr><input type='hidden' name='c_ids' value='" + c.id+"' /><td>" + c.name + "</td><td>" + c.code +"</td><td></td><td></td><td>" + c.specification + "</td><td>" + c.unit + "</td><td><input type='text' name='"+c.id+"_quantity' value='1' class='form-control'/></td></tr>");
           $('#stock_data').append($commodity);
         });
       }

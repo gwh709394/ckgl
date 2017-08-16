@@ -31,7 +31,7 @@
         <td><%= Commodity.find(stock.commodity_id).name %></td>
         <td><%= Commodity.find(stock.commodity_id).specification %></td>
         <td><%= Commodity.find(stock.commodity_id).unit %></td>
-        <td><%= stock.quantity %></td>
+        <td><%= stock.quantity.abs %></td>
       </tr>
     <% end %>
   </tbody>

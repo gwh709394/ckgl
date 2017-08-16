@@ -2,7 +2,7 @@ class Commodity < ApplicationRecord
   validates :name, presence: true
   belongs_to :commodity_type
   has_many :stocks
-  
+  has_many :commodity_warehouse_relationships
   before_save :set_default
   
   def set_default

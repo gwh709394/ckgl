@@ -25,7 +25,7 @@
         <td><%= document.number %></td>
         <td><%= StockType.find(document.stock_type_id).name %></td>
         <td><%= Warehouse.find(document.warehouse_id).name %></td>
-        <td><%= document.d_date %></td>
+        <td><%= document.d_date.strftime("%Y-%m-%d") %></td>
         <td><%= Staff.find(document.staff_id).name %></td>
         <td><%= link_to '详情', document_path(document) %><%= link_to 'Edit', edit_document_path(document) %>
         <%= link_to 'Destroy', document, method: :delete, data: { confirm: '确定删除嘛?' } %></td>
@@ -33,5 +33,5 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate(@documents) %>
 
