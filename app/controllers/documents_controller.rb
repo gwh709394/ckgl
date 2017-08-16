@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = Document.all.order(id: :desc)
     if params[:opt].to_i == StockingType::RECEVING  || params[:opt].nil? 
       a = StockType.where(s_type: StockingType::RECEVING).map{|x| x.id}
     else
@@ -39,13 +39,14 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.save
         params.each do |key,value|
-          Rails.logger.info "Param #{key}: #{value}"
           if key.include? 'quantity'
-            Rails.logger.info "Param stock #{@document.warehouse_id}, "
             c  = Commodity.find(key.split('_')[0].to_i)
-            Rails.logger.info "Param stock #{c.name}, "
-            s = @document.stocks.create(commodity_id: c.id, quantity: value.to_i)
-            
+            quan = value.to_i.abs
+            if @document.stock_type_id == StockingType::SHIPPING
+              quan = -quan
+            end
+            s = @document.stocks.create(commodity_id: c.id, quantity: quan, warehouse_id: @document.warehouse_id)
+            CommodityWarehouseRelationship.update_stock(@document.warehouse_id, c.id, quan)
           end
         end
         format.html { redirect_to @document, notice: 'Document was successfully created.' }

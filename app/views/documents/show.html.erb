@@ -5,17 +5,17 @@
         
       </div>
       <div class="panel-body">
-        <strong>Number:</strong>
+        <strong>编号:</strong>
         <%= @document.number %><br/>
-        <strong>Stock type:</strong>
-        <%= @document.stock_type_id %><br/>
-        <strong>Warehouse:</strong>
-          <%= @document.warehouse_id %><br/>
-        <strong>D date:</strong>
-          <%= @document.d_date %><br/>
-        <strong>Staff:</strong>
-          <%= @document.staff_id %><br/>
-        <strong>Summary:</strong>
+        <strong>单据类型:</strong>
+        <%= StockType.find(@document.stock_type_id).name %><br/>
+        <strong>仓库:</strong>
+          <%= Warehouse.find(@document.warehouse_id).name %><br/>
+        <strong>业务日期:</strong>
+          <%= @document.d_date.strftime("%Y-%m-%d") %><br/>
+        <strong>经手人:</strong>
+          <%= Staff.find(@document.staff_id).name %><br/>
+        <strong>摘要:</strong>
           <%= @document.summary %>
       </div>
     </div>
@@ -37,7 +37,7 @@
               
              <td><%= s.commodity.name %></td>
              <td><%= s.commodity.code %></td>
-             <td><%= s.commodity.commodity_type_id %></td>
+             <td><%= CommodityType.find(s.commodity.commodity_type_id).name %></td>
              <td><%= s.commodity.bar_code %></td>
              <td><%= s.commodity.specification %></td>
              <td><%= s.commodity.unit %></td>
