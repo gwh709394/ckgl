@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :commodity_warehouse_relationships
+  resources :commodity_warehouse_relationships do
+    collection do
+      get 'warning'
+    end
+  end
   resources :documents
   resources :staffs
   resources :stocks

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815145822) do
+ActiveRecord::Schema.define(version: 20170817030053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(version: 20170815145822) do
     t.datetime "updated_at",                                null: false
     t.decimal  "cost",              precision: 8, scale: 2
     t.decimal  "sale",              precision: 8, scale: 2
+    t.integer  "low_stock"
+    t.integer  "high_stock"
+    t.index ["high_stock"], name: "index_commodities_on_high_stock", using: :btree
+    t.index ["low_stock"], name: "index_commodities_on_low_stock", using: :btree
     t.index ["name"], name: "index_commodities_on_name", using: :btree
   end
 
