@@ -26,6 +26,12 @@
     <%= f.input :sale, input_html: { class: 'form-control'}, label: '出库价' %>
   </div>
   <div class="form-group">
+    <%= f.input :low_stock, input_html: { class: 'form-control'}, label: '最低库存数量' %>
+  </div>
+  <div class="form-group">
+    <%= f.input :high_stock, input_html: { class: 'form-control'}, label: '最高库存数量' %>
+  </div>
+  <div class="form-group">
     <%= f.submit '保存', class: 'btn btn-primary' %>
     <%= link_to '返回', commodities_path %>
   </div>

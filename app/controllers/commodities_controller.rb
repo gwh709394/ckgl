@@ -26,6 +26,8 @@ class CommoditiesController < ApplicationController
   # GET /commodities/new
   def new
     @commodity = Commodity.new
+    @commodity.low_stock = 3
+    @commodity.high_stock = 30
   end
 
   # GET /commodities/1/edit
@@ -80,6 +82,6 @@ class CommoditiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def commodity_params
-      params.require(:commodity).permit(:name, :code, :commodity_type_id, :bar_code, :specification, :unit, :cost, :sale)
+      params.require(:commodity).permit(:name, :code, :commodity_type_id, :bar_code, :specification, :unit, :cost, :sale, :low_stock, :high_stock)
     end
 end
