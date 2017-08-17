@@ -6,11 +6,12 @@
       <th>商品名称</th>
       <th>编码</th>
       <th>类型</th>
-      <th>条码</th>
       <th>规格型号</th>
       <th>计量单位</th>
       <th>仓库</th>
       <th>库存</th>
+      <th>库存最低数量</th>
+      <th>库存最高数量</th>
       <td>预警</td>
     </tr>
   </thead>
@@ -21,11 +22,12 @@
         <td><%= cw.commodity.name %></td>
         <td><%= cw.commodity.code %></td>
         <td><%= cw.commodity.commodity_type_id %></td>
-        <td><%= cw.commodity.bar_code %></td>
         <td><%= cw.commodity.specification %></td>
         <td><%= cw.commodity.unit %></td>
         <td><%= cw.warehouse.name %></td>
         <td><%= cw.stock_quantity %></td>
+        <td><%= cw.commodity.low_stock %></td>
+        <td><%= cw.commodity.high_stock %></td>
         <td>
           <%
           if cw.stock_quantity >= cw.commodity.high_stock 
