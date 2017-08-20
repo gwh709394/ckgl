@@ -23,7 +23,8 @@ gem 'cancancan'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem "kaminari", github: "amatsuda/kaminari"
-
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
