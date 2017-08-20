@@ -1,2 +1,91 @@
-<h1>Home#welcome</h1>
-<p>Find me in app/views/home/welcome.html.erb</p>
+<h5>欢迎使用仓库管理系统 <%= current_user.name %></h5>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default" style="margin-top:20px">
+      <div class="panel-heading">
+        <h3 class="panel-title">最新出入库信息</h3> 
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>单据编号</th>
+      <th>单据类型</th>
+      <th>仓库</th>
+      <th>日期</th>
+      <th>经手人</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= document.number %></td>
+        <td><%= StockType.find(document.stock_type_id).name %></td>
+        <td><%= Warehouse.find(document.warehouse_id).name %></td>
+        <td><%= document.d_date.strftime("%Y-%m-%d") %></td>
+        <td><%= Staff.find(document.staff_id).name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default" style="margin-top:50px">
+      <div class="panel-heading">
+        <h3 class="panel-title">库存预警</h3> 
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>商品名称</th>
+      <th>编码</th>
+      <th>类型</th>
+      <th>规格型号</th>
+      <th>计量单位</th>
+      <th>仓库</th>
+      <th>库存</th>
+      <th>库存最低数量</th>
+      <th>库存最高数量</th>
+      <td>预警</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cws.each do |cw| %>
+      <tr>
+        <td><%= cw.commodity.name %></td>
+        <td><%= cw.commodity.code %></td>
+        <td><%= cw.commodity.commodity_type_id %></td>
+        <td><%= cw.commodity.specification %></td>
+        <td><%= cw.commodity.unit %></td>
+        <td><%= cw.warehouse.name %></td>
+        <td><%= cw.stock_quantity %></td>
+        <td><%= cw.commodity.low_stock %></td>
+        <td><%= cw.commodity.high_stock %></td>
+        <td>
+          <%
+          if cw.stock_quantity >= cw.commodity.high_stock 
+            warning = '当前库存过高'
+          elsif cw.stock_quantity <= cw.commodity.low_stock 
+            warning = '当前库存过低'
+          end 
+          %>
+          <span style='color:red'><%= warning %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

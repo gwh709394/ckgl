@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
-  
+  before_action :set_user, only: [:reset_password]
   def index
     @users = User.all.page(params[:page])
   end
   
   def new
     @user = User.new
+  end
+  
+  def reset_password
+    @user.update_attributes(password: User::DEFAULTPWD, password_confirmation: User::DEFAULTPWD)
+    redirect_to users_url, flash: {success: '操作成功.' }
   end
   
   def create
@@ -28,6 +33,11 @@ class UsersController < ApplicationController
   end
   
   private
+  
+    def set_user
+      @user = User.find_by(id: params[:id])
+    end
+    
     def user_params
       params.require(:user).permit(:name, :email, :password)
     end
