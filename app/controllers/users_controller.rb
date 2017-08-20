@@ -21,13 +21,18 @@ class UsersController < ApplicationController
     else
       @user.password = @user.password_confirmation = default_code
     end
+    
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to users_url, flash: {success: '操作成功.' }}
-        format.json { render :show, status: :created, location: @user }
+      if @user.check_user >=5 && current_user.name != 'administrator'
+        format.html { redirect_to users_url, flash: {success: '操作失败.请联系管理员' }}
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        if @user.save
+          format.html { redirect_to users_url, flash: {success: '操作成功.' }}
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
