@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:reset_password]
   def index
-    @users = User.all.page(params[:page])
+    @users = User.normal.page(params[:page])
+    if params[:search]
+      @users = @users.query (params[:search].to_s)
+    end
   end
   
   def new
