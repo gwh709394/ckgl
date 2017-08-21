@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require jquery-barcode
+//= reuiqre jquery-print
 //= require_tree .
 
 $(document).ready (function(){

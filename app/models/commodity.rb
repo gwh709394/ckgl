@@ -8,6 +8,14 @@ class Commodity < ApplicationRecord
   def set_default
     self.cost ||= 0.00
     self.sale ||= 0.00
+    if self.code.nil?
+      if Commodity.last.code.present?
+        self.code = Commodity.last.code +1
+      else
+        self.code = 10001
+      end
+      self.bar_code = "CK#{self.code}"
+    end
   end
   
   def self.query q
