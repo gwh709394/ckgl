@@ -29,7 +29,8 @@
       <th>条码</th>
       <th>规格型号</th>
       <th>计量单位</th> 
-      <th>数量</th>     
+      <th>数量</th>   
+      <th></th>     
     </tr>
   </thead>
   <tbody id="stock_data">
@@ -82,4 +83,30 @@
   </div>
   
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  
+  $("#bar-code-input").change(function(){
+    query = $("#bar-code-input").val()
+    $.ajax({
+      type: "GET",
+      url: "/commodities/barcode", data: { search: query },
+      dataType: "json",
+      success:function(data) {
+        data.commodities.forEach(function(c){
+          c_id = "#" +c.id + "_quantity"
+          if ($(c_id).length > 0){
+            alert('商品已经存在');
+          } else {
+            $commodity = $("<tr id=data-id-"+c.id+"><input type='hidden' name='c_ids' value='" + c.id+"' /><td>" + c.name + "</td><td>" + c.code +"</td><td></td><td></td><td>" + c.specification + "</td><td>" + c.unit + "</td><td><input id='" + c.id + "_quantity' type='text' name='"+c.id+"_quantity' value='1' class='form-control'/></td><td><a href='javascript:void(0)' onclick='remove_stock(" + c.id+")'>移除</a></td></tr>");
+            $('#stock_data').append($commodity);
+          }          
+        });
+      }
+    });
+  });
+});
+ 
+</script>
 

@@ -18,6 +18,17 @@ class CommoditiesController < ApplicationController
     end
   end
 
+  def barcode
+    if params[:search].present?
+      @commodities = Commodity.barcode(params[:search].to_s)
+      respond_to do |format|
+        format.json { 
+           render json: {:commodities => @commodities}
+        } 
+      end
+    end
+  end
+
   # GET /commodities/1
   # GET /commodities/1.json
   def show

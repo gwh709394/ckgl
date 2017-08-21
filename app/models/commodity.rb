@@ -18,6 +18,10 @@ class Commodity < ApplicationRecord
     end
   end
   
+  def self.barcode bc
+    Commodity.where(bar_code: bc)
+  end
+  
   def self.query q
     s = "%#{q}%"
     Commodity.where('name like ?', s)
