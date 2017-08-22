@@ -13,6 +13,13 @@
   <div class="form-group">
     <%= f.input :bar_code, input_html: { class: 'form-control'}, label: '条码' %>
   </div>
+  <% if @commodity.bar_code.present? %>
+  <div id="print-data" style="text-align: left">
+  <div id="commodity-bar-code"></div>库存管理系统</div><br/>
+  <a href="#" id="barcodePrint">打印</a>
+  <br/>
+ 
+  <% end %>
   <div class="form-group">
     <%= f.input :specification, input_html: { class: 'form-control'}, label: '规格型号' %>
   </div>
@@ -36,3 +43,16 @@
     <%= link_to '返回', commodities_path %>
   </div>
 <% end %>
+<script type="text/javascript">
+$(document).ready(function(){  
+  var bc = $("#commodity_bar_code").val()
+  
+  $("#commodity-bar-code").barcode(bc, "code39");
+  $("#barcodePrint").click(function() {
+
+    $("#print-data").print();
+    return (false);
+  });
+});
+
+</script>

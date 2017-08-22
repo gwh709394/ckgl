@@ -14,23 +14,33 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require jquery-barcode
+//= reuiqre jquery-print
 //= require_tree .
 
-$(document).ready (function(){
+// $(document).ready (function(){
   
-  $("#bar-code-input").change(function() {
-    query = $("#bar-code-input").val()
-    $.ajax({
-      type: "GET",
-      url: "/commodities",
-      data: { search: query },
-      dataType: "json",
-      success:function(data) {
-        data.commodities.forEach(function(c){
-          $commodity = $("<tr><input type='hidden' name='c_ids' value='" + c.id+"' /><td>" + c.name + "</td><td>" + c.code +"</td><td></td><td></td><td>" + c.specification + "</td><td>" + c.unit + "</td><td><input type='text' name='"+c.id+"_quantity' value='1' class='form-control'/></td></tr>");
-          $('#stock_data').append($commodity);
-        });
-      }
-    });
+//   $("#bar-code-input").change(function() {
+//     query = $("#bar-code-input").val()
+//     $.ajax({
+//       type: "GET",
+//       url: "/commodities/barcode",
+//       data: { search: query },
+//       dataType: "json",
+//       success:function(data) {
+//         data.commodities.forEach(function(c){
+//           $commodity = $("<tr><input type='hidden' name='c_ids' value='" + c.id+"' /><td>" + c.name + "</td><td>" + c.code +"</td><td></td><td></td><td>" + c.specification + "</td><td>" + c.unit + "</td><td><input type='text' name='"+c.id+"_quantity' value='1' class='form-control'/></td></tr>");
+//           $('#stock_data').append($commodity);
+//         });
+//       }
+//     });
+//   });
+// });
+function remove_stock(d_id) { 
+  
+  $("#data-id-" + d_id).fadeOut(900, function(){
+    $(this).remove();
   });
-});
+  return false;
+  //$("#stock_data tr[data-id" + d_id +"]").remove();
+}

@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :stock_types
   root to: 'home#welcome'
   
-  resources :commodities
+  resources :commodities do
+    collection do
+      get :barcode
+    end
+  end
   resources :commodity_types
   resources :warehouses
   devise_for :users

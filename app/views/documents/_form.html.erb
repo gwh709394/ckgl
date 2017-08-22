@@ -16,7 +16,6 @@
 
   <div class="form-inline">
     <div class="form-group">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">选择商品...</button>
       <input type="text" class="form-control" id="bar-code-input" placeholder="扫描商品标签">
     </div>
   </div>
@@ -29,7 +28,8 @@
       <th>条码</th>
       <th>规格型号</th>
       <th>计量单位</th> 
-      <th>数量</th>     
+      <th>数量</th>   
+      <th></th>     
     </tr>
   </thead>
   <tbody id="stock_data">
@@ -82,4 +82,57 @@
   </div>
   
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+
+  $(document).keypress(function(e) {  
+  // 回车键事件  
+    if(e.which == 13) {  
+      // alert('return');
+      // return false;
+      e.preventDefault();
+    }  
+  }); 
+
+  $("#bar-code-input").change(function(e){
+    query = $("#bar-code-input").val()
+    query = query.substring(1, query.length - 1);
+    
+    $("#bar-code-input").val('');
+    $.ajax({
+      type: "GET",
+      url: "/commodities/barcode", data: { search: query },
+      dataType: "json",
+      success:function(data) {
+        data.commodities.forEach(function(c){
+          c_id = "#" +c.id + "_quantity"
+          if ($(c_id).length > 0){
+            alert('商品已经存在');
+          } else {
+            $commodity = $("<tr id=data-id-"+c.id+"><td>" + c.name + "</td><td>" + c.code +"</td><td></td><td></td><td>" + c.specification + "</td><td>" + c.unit + "</td><td><input id='" + c.id + "_quantity' type='text' name='"+c.id+"_quantity' value='1' class='form-control'/></td><td><a href='javascript:void(0)' onclick='remove_stock(" + c.id+")'>移除</a></td></tr>");
+            $('#stock_data').append($commodity);
+          }          
+        });
+
+      }
+    });
+
+
+  $("form").submit(function(e){
+    // if(e.keyCode==13){
+    //             e.preventDefault();
+    //             return false;
+    //         }
+    // if($('#stock_data tr').length < 1)
+    // {
+    //   alert('请选择商品。');
+    //   return false;
+    // }
+  });
+
+  });
+});
+ 
+</script>
 
