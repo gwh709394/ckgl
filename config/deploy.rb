@@ -2,7 +2,7 @@
 lock "3.9.0"
 
 set :application, "ckgl"
-set :repo_url, "git@bitbucket.org:ryan715/ckgl.git"
+set :repo_url, "git@bgithub.com:gwh709394/ckgl.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
