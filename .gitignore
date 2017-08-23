@@ -19,7 +19,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
-/config/database.yml
-/config/secrets.yml
-/config/deploy.rb
-/config/deploy/*
+config/database.yml
+config/secrets.yml
+config/deploy.rb
+config/deploy/*
