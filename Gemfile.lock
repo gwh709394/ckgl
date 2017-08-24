@@ -303,7 +303,6 @@ DEPENDENCIES
   roo
   sass-rails (~> 5.0)
   simple_form
-  spreadsheet
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
