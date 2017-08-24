@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require jquery-barcode
 //= reuiqre jquery-print
+//= require bootstrap-datepicker
 //= require_tree .
 
 // $(document).ready (function(){

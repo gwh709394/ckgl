@@ -1,9 +1,13 @@
 <h4>商品出入库明细</h4>
 <%= form_tag(stocks_path, :method => "get", id: "search-form",class: "form-inline") do %>
   <div class="form-group">
-  <%= text_field_tag :search, params[:search], placeholder: "搜索关键字", class: 'form-control' %>
-  <%= submit_tag "查询", class:'btn btn-warning' %></div>
+    <input type="text" class='datepicker form-control' placeholder = "业务日期" name="date">
+    <%= text_field_tag :search, params[:search], placeholder: "商品关键字", class: 'form-control' %>
+    <%= submit_tag "查询", class:'btn btn-warning' %>
+  <%= link_to "导出", stocks_path(search: params[:search], date: params[:date], format: 'xlsx'), class:'btn btn-primary' %>
+  </div>
 <% end %>
+
 <hr />
 <table class="table table-bordered">
   <thead>
@@ -38,3 +42,10 @@
 </table>
 <%= paginate(@stocks) %>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      format: "yyyy/mm/dd"
+    });
+  });
+</script>

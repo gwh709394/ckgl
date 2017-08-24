@@ -64,8 +64,14 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    axlsx (2.0.1)
+      htmlentities (~> 4.3.1)
+      nokogiri (>= 1.4.1)
+      rubyzip (~> 1.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -134,6 +140,7 @@ GEM
       grape-swagger (>= 0.7.2)
       railties (>= 3.2.12)
     hashie (3.5.5)
+    htmlentities (4.3.4)
     i18n (0.8.6)
     ice_nine (0.11.1)
     jbuilder (2.7.0)
@@ -204,6 +211,12 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    roo (1.13.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
+    ruby-ole (1.2.12.1)
+    rubyzip (1.0.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -218,6 +231,8 @@ GEM
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
+    spreadsheet (1.1.4)
+      ruby-ole (>= 1.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -263,6 +278,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  axlsx
+  bootstrap-datepicker-rails
   bootstrap-sass (~> 3.3.6)
   byebug
   cancancan
@@ -283,8 +300,10 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.0)
   rails (~> 5.0.4)
+  roo
   sass-rails (~> 5.0)
   simple_form
+  spreadsheet
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

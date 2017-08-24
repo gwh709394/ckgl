@@ -9,4 +9,3 @@
 # u2 = User.create({name: "Sue", email: "sue@example.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa"})
 # u3 = User.create({name: "Kev", email: "kev@example.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa"})
 # u4 = User.create({name: "Jack", email: "jack@example.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa"})
-u = User.create({name: "administrator", email: "admin@ckgl.com", password: "13878137715", password_confirmation: "13878137715"})
