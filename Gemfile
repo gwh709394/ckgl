@@ -31,7 +31,6 @@ gem 'grape'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
 gem 'axlsx'
-gem 'roo'
 gem 'bootstrap-datepicker-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
