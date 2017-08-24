@@ -30,7 +30,9 @@ gem 'capistrano-rbenv', '~> 2.1'
 gem 'grape'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
-
+gem 'axlsx'
+gem 'roo'
+gem 'spreadsheet'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

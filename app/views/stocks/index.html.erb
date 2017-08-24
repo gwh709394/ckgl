@@ -2,7 +2,9 @@
 <%= form_tag(stocks_path, :method => "get", id: "search-form",class: "form-inline") do %>
   <div class="form-group">
   <%= text_field_tag :search, params[:search], placeholder: "搜索关键字", class: 'form-control' %>
-  <%= submit_tag "查询", class:'btn btn-warning' %></div>
+  <%= submit_tag "查询", class:'btn btn-warning' %>
+  <%= link_to "导出", stocks_path(search: params[:search],format: 'xlsx'), class:'btn btn-primary' %>
+  </div>
 <% end %>
 <hr />
 <table class="table table-bordered">

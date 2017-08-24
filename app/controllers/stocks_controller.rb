@@ -8,8 +8,27 @@ class StocksController < ApplicationController
     if params[:search].present?
       @stocks = @stocks.query(params[:search].to_s)
     end
-    @stocks = @stocks.page(params[:page]).per(15)
+    respond_to do |format|
+      format.xlsx do
+        send_data(Stock.download_xlsx(@stocks),
+          #:type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet",
+          :type => :xls, :disposition => 'attachment',
+          :filename => "库存明细_#{Time.now.strftime("%Y%m%d%H%M")}.xlsx")
+      end
+      format.html {
+        @stocks = @stocks.page(params[:page]).per(15)
+      }
+    end
+    
   end
+  
+  # def export
+  #   @stocks = Stock.where('document_id is not null').order(id: :desc)
+  #   if params[:search].present?
+  #     @stocks = @stocks.query(params[:search].to_s)
+  #   end
+  #
+  # end
 
   # GET /stocks/1
   # GET /stocks/1.json
