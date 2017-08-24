@@ -8,6 +8,10 @@ class StocksController < ApplicationController
     if params[:search].present?
       @stocks = @stocks.query(params[:search].to_s)
     end
+    if params[:date].present?
+      d = Date.parse params[:date].to_s
+      @stocks = @stocks.where(["created_at >= ? AND created_at <= ?", d.beginning_of_day, d.end_of_day])
+    end
     respond_to do |format|
       format.xlsx do
         send_data(Stock.download_xlsx(@stocks),
