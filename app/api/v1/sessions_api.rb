@@ -13,6 +13,7 @@ module V1
         requires :password, type: String, desc: "User Password"
       end
       post do
+        Rails.logger.info('======')
         email = params[:email]
         password = params[:password]
         if email.present?

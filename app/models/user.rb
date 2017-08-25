@@ -18,15 +18,15 @@ class User < ApplicationRecord
   end
   
   def api_render
-    array = []
-      hash = {}
-      hash.merge!(
-        username: self.name,
-        email: self.email,
-        access_token: self.access_token
-      )
-      array << hash
-    return array
+    # array = []
+    hash = {}
+    hash.merge!(
+      username: self.name,
+      email: self.email,
+      access_token: self.access_token
+    )
+    # array << hash
+    return hash
   end
   
  
