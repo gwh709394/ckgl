@@ -9,7 +9,7 @@ module V1
       
       desc "Authenticate user and return user object / access token"
       params do
-        optional :email, type: String, desc: "User Email"
+        requires :email, type: String, desc: "User Email"
         requires :password, type: String, desc: "User Password"
       end
       post do
@@ -28,10 +28,9 @@ module V1
             {result: 0, message: "用户名或者密码错误"}
             # return
           else
-            user.ensure_authentication_token
-            user.save
+            user.update_attributes(access_token: user.generate_authentication_token)
             # {status: 'ok', token: user.authentication_token}.to_json
-            {result:1, message: User.api_render(user)}
+            {result:1, message: user.api_render}
           end
         end
       end
