@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_save :generate_authentication_token
   DEFAULTPWD = 'ckgl888' 
   validates :name, presence: true
   scope :normal, -> { where.not(name: 'administrator')}
@@ -14,5 +15,25 @@ class User < ApplicationRecord
   def self.query name
     s = "%#{name}%"
     User.where('name like ?', s)
+  end
+  
+  def api_render
+    # array = []
+    hash = {}
+    hash.merge!(
+      username: self.name,
+      email: self.email,
+      access_token: self.access_token
+    )
+    # array << hash
+    return hash
+  end
+  
+ 
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(access_token: token).first
+    end
   end
 end
