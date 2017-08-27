@@ -15,6 +15,6 @@ module Ckgl
     config.active_record.default_timezone = :local
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
-    config.web_console.whitelisted_ips = '192.168.0.101'
+    
   end
 end
