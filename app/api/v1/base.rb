@@ -1,8 +1,8 @@
 module V1
   class Base < Grape::API
     version 'v1', :using => :path
-     mount V1::SessionsApi
-
+    mount V1::SessionsApi
+    
     
     rescue_from :all, backtrace: true
     # error_formatter :json, API::ErrorFormatter
@@ -19,7 +19,7 @@ module V1
     
       def authenticated
         return true if warden.authenticated?
-        params[:access_token] && @user = User.find_by_authentication_token(params[:access_token])
+        params[:access_token] && @user = User.find_by_access_token(params[:access_token])
       end
     
       def current_user
@@ -32,6 +32,7 @@ module V1
       hide_documentation_path: true,
       hide_format: true
     )
+    mount V1::StocksApi
     
   
   end

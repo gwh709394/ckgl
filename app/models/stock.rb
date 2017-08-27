@@ -8,8 +8,23 @@ class Stock < ApplicationRecord
     Stock.where('commodity_id in (?)', a)
   end
   
+  def self.api_render stocks
+    array = []
+    stocks.each do |stock|
+      hash = Hash.new
+      hash.merge!(
+        warehouse: Warehouse.find(stock.warehouse_id).name,
+        number: stock.document.number,
+        date: stock.document.d_date.strftime("%Y-%m-%d"),
+        stock_type: StockType.find(stock.document.stock_type_id).name,
+        commodity:Commodity.find(stock.commodity_id).name
+      )
+      array << hash
+    end
+    return array
+  end
+  
   def self.download_xlsx(q)
-    
     p = Axlsx::Package.new
     wb = p.workbook
     header = ['仓库', '单据编号', '业务日期', '单据类型', '商品编码', '商品名称', '规格型号', '单位', '库存变动']
