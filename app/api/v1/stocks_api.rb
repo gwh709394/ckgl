@@ -11,14 +11,14 @@ module V1
         optional :name, type: String, desc: "Commoditiy"
       end
       get do
-        stocks = Stock.all.order(created_at: :desc)
+        stocks = Stock.where('warehouse_id is not null').order(created_at: :desc)
         if params[:name].present?
           stocks = stocks.query(params[:name].to_s)
         end
-        if stocks
+        if stocks.present?
           { 
             result: 1, 
-            message: stocks }
+            message: Stock.api_render(stocks) }
         else 
           { result: 0, message: "暂无数据" }
         end
