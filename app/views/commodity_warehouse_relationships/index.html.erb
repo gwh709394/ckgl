@@ -21,7 +21,7 @@
       <tr>
         <td><%= cw.commodity.name %></td>
         <td><%= cw.commodity.code %></td>
-        <td><%= cw.commodity.commodity_type_id %></td>
+        <td><%= CommodityType.find(cw.commodity.commodity_type_id).name %></td>
         <td><%= cw.commodity.bar_code %></td>
         <td><%= cw.commodity.specification %></td>
         <td><%= cw.commodity.unit %></td>

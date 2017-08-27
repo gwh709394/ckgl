@@ -3,7 +3,7 @@
 
   <div class="form-group">
     <%= f.input :name, input_html: { class: 'form-control'}, label: '名称'%>
-    <%= f.input :s_type, collection: StockingType.menu,  input_html: { class: 'form-control'}, label: '名称' %>
+    <%= f.input :s_type, collection: StockingType.menu,  input_html: { class: 'form-control'}, label: '名称', include_blank: false %>
   </div>
 
   <div class="form-group">
