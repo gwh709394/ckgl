@@ -13,6 +13,9 @@ class Commodity < ApplicationRecord
         Rails.logger.info("#{Commodity.where.not(bar_code: '').where.not(bar_code:nil).last.id}")
         Rails.logger.info("#{Commodity.where.not(bar_code: '').where.not(bar_code:nil).last.bar_code}")
         num = Commodity.where.not(bar_code: '').where.not(bar_code:nil).last.bar_code.split('CKGL')[1].to_i
+        if num == 0
+          num = 10000
+        end
         self.bar_code = "CKGL#{(num + 1).to_s}"
       else
         self.bar_code = "CKGL10001"
