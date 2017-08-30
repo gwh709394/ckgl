@@ -24,3 +24,4 @@ config/secrets.yml
 config/deploy.rb
 config/deploy/*
 */*.DS_Store
+.DS_Store

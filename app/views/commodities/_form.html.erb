@@ -10,10 +10,11 @@
   <div class="form-group">
     <%= f.association :commodity_type, input_html: { class: 'form-control'}, label: '商品分类', include_blank:false  %>
   </div>
-  <div class="form-group">
-    <%= f.input :bar_code, input_html: { class: 'form-control'}, label: '条码' %>
-  </div>
+ 
   <% if @commodity.bar_code.present? %>
+   <div class="form-group">
+    <%= f.input :bar_code, input_html: { class: 'form-control'}, label: '条码', disabled: true %>
+  </div>
   <div id="print-data" style="text-align: left">
   <div id="commodity-bar-code"></div>库存管理系统</div><br/>
   <a href="#" id="barcodePrint">打印</a>
