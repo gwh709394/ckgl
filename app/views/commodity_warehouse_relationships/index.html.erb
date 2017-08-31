@@ -1,7 +1,14 @@
 <h4>商品库存信息</h4>
+<%= form_tag(commodity_warehouse_relationships_path, :method => "get", id: "search-form",class: "form-inline") do %>
+  <div class="form-group">
+    <%= text_field_tag :search, params[:search], placeholder: "商品关键字", class: 'form-control' %>
+    <%= submit_tag "查询", class:'btn btn-warning' %>
+  </div>
+<% end %>
 
 
 <hr />
+
 <table class="table table-bordered">
   <thead>
     <tr>

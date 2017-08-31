@@ -2,7 +2,10 @@ class CommodityWarehouseRelationship < ApplicationRecord
   belongs_to :commodity
   belongs_to :warehouse
 
-  def self.query
+  def self.query q
+    ids = []
+    cs = Commodity.query(q).map { |x| ids << x.id}
+    CommodityWarehouseRelationship.where('commodity_id in (?)', ids)
   end
   
   def self.update_stock(w_id, c_id, quantity)
