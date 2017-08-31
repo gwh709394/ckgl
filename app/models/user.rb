@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_save :generate_authentication_token
   DEFAULTPWD = 'ckgl888' 
-  validates :name, presence: true
+  validates :name, :email, presence: true
   scope :normal, -> { where.not(name: 'administrator')}
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     member do
       get :reset_password
     end
+    collection do
+      patch 'update_password'
+    end
   end
   mount ApplicationApi => '/api'
   mount GrapeSwaggerRails::Engine => '/apidoc'
