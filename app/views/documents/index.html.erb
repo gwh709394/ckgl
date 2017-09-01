@@ -24,7 +24,7 @@
       <tr>
         <td><%= document.number %></td>
         <td><%= StockType.find(document.stock_type_id).name %></td>
-        <td><%= Warehouse.find(document.warehouse_id).name %></td>
+        <td><%= Warehouse.find(document.warehouse_id).name if Warehouse.where(id: document.warehouse_id).first.present? %></td>
         <td><%= document.d_date.strftime("%Y-%m-%d") %></td>
         <td><%= Staff.find(document.staff_id).name %></td>
         <td><%= link_to '详情', document_path(document) %>

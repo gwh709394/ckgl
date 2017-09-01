@@ -37,7 +37,7 @@
               
              <td><%= s.commodity.name %></td>
              <td><%= s.commodity.code %></td>
-             <td><%= CommodityType.find(s.commodity.commodity_type_id).name %></td>
+             <td><%= CommodityType.find(s.commodity.commodity_type_id).name if CommodityType.where(id: s.commodity.commodity_type_id).first.present? %></td>
              <td><%= s.commodity.bar_code %></td>
              <td><%= s.commodity.specification %></td>
              <td><%= s.commodity.unit %></td>

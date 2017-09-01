@@ -28,11 +28,11 @@
       <tr>
         <td><%= cw.commodity.name %></td>
         <td><%= cw.commodity.code %></td>
-        <td><%= CommodityType.find(cw.commodity.commodity_type_id).name %></td>
+        <td><%= CommodityType.find(cw.commodity.commodity_type_id).name if CommodityType.where(id: cw.commodity.commodity_type_id).first.present? %></td>
         <td><%= cw.commodity.bar_code %></td>
         <td><%= cw.commodity.specification %></td>
         <td><%= cw.commodity.unit %></td>
-        <td><%= cw.warehouse.name %></td>
+        <td><%= cw.warehouse.name if cw.warehouse.present? %></td>
         <td><%= cw.stock_quantity %></td>
       </tr>
     <% end %>
