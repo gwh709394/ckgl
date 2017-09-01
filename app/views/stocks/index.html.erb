@@ -1,10 +1,12 @@
 <h4>商品出入库明细</h4>
 <%= form_tag(stocks_path, :method => "get", id: "search-form",class: "form-inline") do %>
   <div class="form-group">
-    <input type="text" class='datepicker form-control' placeholder = "业务日期" name="date">
+    
     <%= text_field_tag :search, params[:search], placeholder: "商品关键字", class: 'form-control' %>
+    <%= select_tag "stock_type", options_from_collection_for_select(StockType.all, "id", "name"), class: 'form-control' %>
+    <input type="text" class='datepicker form-control' placeholder = "业务日期" name="date">
     <%= submit_tag "查询", class:'btn btn-warning' %>
-  <%= link_to "导出", stocks_path(search: params[:search], date: params[:date], format: 'xlsx'), class:'btn btn-primary' %>
+  <%= link_to "导出", stocks_path(search: params[:search], stock_type: params[:stock_type], date: params[:date], format: 'xlsx'), class:'btn btn-primary' %>
   </div>
 <% end %>
 
@@ -27,7 +29,7 @@
   <tbody>
     <% @stocks.each do |stock| %>
       <tr>
-        <td><%= Warehouse.find(stock.warehouse_id).name if stock.warehouse_id.present? %></td>
+        <td><%= Warehouse.find(stock.warehouse_id).name if Warehouse.where(id: stock.warehouse_id).first.present? %></td>
         <td><%= stock.document.number %></td>
         <td><%= stock.document.d_date.strftime("%Y-%m-%d") %></td>
         <td><%= StockType.find(stock.document.stock_type_id).name if StockType.where(id: stock.document.stock_type_id).first.present? %></td>

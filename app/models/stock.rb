@@ -8,6 +8,11 @@ class Stock < ApplicationRecord
     Stock.where('commodity_id in (?)', a)
   end
   
+  def self.query_stock_type st
+    a = Document.where(stock_type_id: st).map { |x| x.id }
+    Stock.where('document_id in (?)', a)
+  end
+  
   def self.api_render stocks
     array = []
     stocks.each do |stock|
