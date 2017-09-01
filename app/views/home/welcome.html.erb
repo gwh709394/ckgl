@@ -22,7 +22,7 @@
     <% @documents.each do |document| %>
       <tr>
         <td><%= document.number %></td>
-        <td><%= StockType.find(document.stock_type_id).name %></td>
+        <td><%= StockType.find(document.stock_type_id).name if StockType.where(id: document.stock_type_id).first.present? %></td>
         <td><%= Warehouse.find(document.warehouse_id).name %></td>
         <td><%= document.d_date.strftime("%Y-%m-%d") %></td>
         <td><%= Staff.find(document.staff_id).name %></td>

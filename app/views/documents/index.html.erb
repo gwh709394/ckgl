@@ -5,7 +5,7 @@
 <h4>出库明细</h4>
 <%= link_to '新建出库信息', new_document_path(opt: StockingType::SHIPPING), class:'btn btn-primary' %>
 <% end %>
-<hr />
+
 <hr />
 <table class="table table-bordered">
   <thead>
@@ -27,8 +27,8 @@
         <td><%= Warehouse.find(document.warehouse_id).name %></td>
         <td><%= document.d_date.strftime("%Y-%m-%d") %></td>
         <td><%= Staff.find(document.staff_id).name %></td>
-        <td><%= link_to '详情', document_path(document) %><%= link_to 'Edit', edit_document_path(document) %>
-        <%= link_to 'Destroy', document, method: :delete, data: { confirm: '确定删除嘛?' } %></td>
+        <td><%= link_to '详情', document_path(document) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

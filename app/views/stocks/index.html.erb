@@ -30,7 +30,7 @@
         <td><%= Warehouse.find(stock.warehouse_id).name if stock.warehouse_id.present? %></td>
         <td><%= stock.document.number %></td>
         <td><%= stock.document.d_date.strftime("%Y-%m-%d") %></td>
-        <td><%= StockType.find(stock.document.stock_type_id).name if stock.document.stock_type_id.present? %></td>
+        <td><%= StockType.find(stock.document.stock_type_id).name if StockType.where(id: stock.document.stock_type_id).first.present? %></td>
         <td><%= Commodity.find(stock.commodity_id).code %></td>
         <td><%= Commodity.find(stock.commodity_id).name %></td>
         <td><%= Commodity.find(stock.commodity_id).specification %></td>

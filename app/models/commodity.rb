@@ -1,4 +1,5 @@
 class Commodity < ApplicationRecord
+  acts_as_paranoid
   validates :name, presence: true
   belongs_to :commodity_type
   has_many :stocks
